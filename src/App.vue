@@ -21,8 +21,9 @@ import MainStats from './components/stats/MainStats.vue';
 import SideStats from './components/stats/SideStats.vue';
 import SecondTab from './components/tabs/SecondTab.vue';
 import ThirdTab from './components/tabs/ThirdTab.vue';
-import { computed, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import Log from './components/stats/Log.vue';
+import { startTimer } from './components/gameloop';
 
 const tabs = [
   {
@@ -43,4 +44,7 @@ const activeNavTab = ref('game');
 
 const activeTab = computed(() => tabs.find(tab => tab.name === activeNavTab.value) ?? tabs[0]);
 
+onMounted(() => {
+  startTimer();
+})
 </script>
