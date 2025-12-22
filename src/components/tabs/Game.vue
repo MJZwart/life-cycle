@@ -1,11 +1,9 @@
 <template>
     <h3 flex justify-center text-gentle-light>Main game</h3>
-    <p>This is where the main gameplay is.</p>
-    <p>Here is a progress bar. To show progress.</p>
-    <ProgressBar :current-progress="progress" />
-    <div flex flex-row gap-3 justify-center>
-        <PrimaryButton @click="progress -= 10">Decrease</PrimaryButton>
-        <PrimaryButton @click="progress += 10">Increase</PrimaryButton>
+    <div flex flex-col gap-2>
+        <span>Section header</span>
+        <SkillBar v-for="skill in skills" :current-progress="skill.progress" :title="skill.title"
+            :active="skill.active" />
     </div>
 </template>
 
@@ -13,6 +11,13 @@
 import ProgressBar from '../components/ProgressBar.vue';
 import PrimaryButton from '../components/PrimaryButton.vue';
 import { ref } from 'vue';
+import SkillBar from '../components/SkillBar.vue';
 
-const progress = ref(78);
+const skill = ref({ progress: 78, title: "Generic Skill", active: true });
+const otherSkill = ref({ progress: 23, title: "Other Skill", active: false });
+
+const skills = ref([
+    skill.value,
+    otherSkill.value,
+]);
 </script>
