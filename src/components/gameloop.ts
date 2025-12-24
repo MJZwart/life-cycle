@@ -1,10 +1,12 @@
 import { computed, ref } from "vue";
 import { player } from "./player";
+import { increaseCurrentSkill } from "./skills";
 
 const intervalId = ref();
 
 const timeLoop = () => {
     player.value.age++;
+    increaseCurrentSkill();
     if (player.value.age >= player.value.lifespan) pauseTimer();
 }
 
