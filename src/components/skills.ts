@@ -53,3 +53,21 @@ export const increaseCurrentSkill = () => {
         currentlyActive.value.currentExp -= expCap;
     }
 }
+
+interface SavedSkills {
+    learningSkill: Skill;
+    workingSkill: Skill;
+}
+
+export const prepSkillsForSave = () => {
+    const skills = {
+        learningSkill: learningSkill.value,
+        workingSkill: workingSkill.value,
+    };
+    return skills;
+}
+
+export const setSkillsFromSave = (skills: SavedSkills) => {
+    learningSkill.value = skills.learningSkill;
+    workingSkill.value = skills.workingSkill;
+}

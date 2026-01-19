@@ -1,0 +1,77 @@
+[ ] Make the skill bar smoother so it hits a new level as soon as it is full
+
+
+Current skills:
+
+Research            Better learning skill
+Education           Higher EXP in jobs and unlocks higher paid jobs
+Nutrition           Longer lifespan
+Fitness             Increases work EXP
+Communication       Boost to work EXP
+Negotiation         Reduces costs
+Finance             Increase work pay
+
+Time management     Increases game speed
+Memory              Increases recycle ratio?
+Automation          Increases passive income
+
+Creativity          Boost to creative jobs
+Strength training   Boost to physical jobs
+Craftsmanship       Boost to crafting jobs
+Engineering         Boost to production jobs
+Economics           Boost to finance jobs
+???                 Boost to STEM jobs
+
+
+Jobs
+
+STEM                
+Intern              
+Junior researcher   Boost to research
+Research scientist  
+Lead scientist      Bonus to automation
+Innovator           Unlock tech upgrades & passive income
+
+Labour 
+Labourer            
+Skilled worker      Bonus to strength training
+Foreman             Bonus to time management
+Constr. manager     Bonus to communication
+
+Healthcare
+Assistant           
+Nurse               Bonus to nutrition
+Doctor              
+Specialist          Bonus to research
+Medical Director    
+
+Creative
+Hobbyist            Boost to creativity
+Freelancer          Boost to negotiation
+Prof Artist         
+Icon                Unlock passive income
+
+Education
+Tutor               
+Teacher             Bonus to education
+Professor           Bonus to research
+Dean                Bonus to communication & memory
+
+Business
+Assistant           
+Manager             Bonus to time management
+Director            Bonus to communication
+Executive           
+CEO                 
+
+Engineering
+Technician
+Engineer
+Senior Engineer
+Architect
+
+Politics
+Clerk               
+Official            Improve communication
+Minister            Improve negotiation
+Leader              Improve negotiation & communication

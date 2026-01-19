@@ -12,4 +12,8 @@ const createNewPlayer = (): Player => {
     }
 }
 
-export const player = ref<Player>(createNewPlayer())
+export const player = ref<Player>(createNewPlayer());
+
+export const setPlayerFromSave = (savedPlayer: Player) => {
+    player.value = savedPlayer;
+}
