@@ -1,13 +1,13 @@
 import { computed, ref } from "vue";
-import { player, setPlayerFromSave } from "./player";
-import { increaseCurrentSkill } from "./skills";
+import { currentLifespan, player, setPlayerFromSave } from "./player";
+import { increaseCurrentSkill } from "./userSkills";
 
 const intervalId = ref();
 
 const timeLoop = () => {
     player.value.age++;
     increaseCurrentSkill();
-    if (player.value.age >= player.value.lifespan) pauseTimer();
+    if (player.value.age >= currentLifespan.value) pauseTimer();
 }
 
 const currentSpeed = computed(() => 100);

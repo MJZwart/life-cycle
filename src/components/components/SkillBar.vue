@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import { isCurrentlyActive } from '../skills';
+import { isCurrentlyActive } from '../userSkills';
 
 const { currentProgress, maxProgress, title } = defineProps<{ currentProgress: number, maxProgress: number, title: string }>();
 

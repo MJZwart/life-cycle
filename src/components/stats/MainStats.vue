@@ -7,8 +7,8 @@
         </div>
         <div flex flex-col gap-2>
             <span font-bold text-gentle-light>Lifespan</span>
-            {{ parseAge(player.lifespan) }}
-            <ProgressBar :current-progress="expProgress" class="w-9rem!" />
+            {{ parseAge(currentLifespan) }}
+            <ProgressBar :current-progress="expProgress" class="w-[9rem]!" />
         </div>
     </div>
 </template>
@@ -16,8 +16,8 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import ProgressBar from '../components/ProgressBar.vue';
-import { player } from '../player';
+import { currentLifespan, player } from '../player';
 import { parseAge } from '../helpers/numberParser';
 
-const expProgress = computed(() => (player.value.age / player.value.lifespan) * 100);
+const expProgress = computed(() => (player.value.age / currentLifespan.value) * 100);
 </script>
