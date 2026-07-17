@@ -1,17 +1,4 @@
-export type AvailableSkills = 'Research' | 'Education' | 'Nutrition' | 'Negotiation' | 'Frugality' | 'Strength training';
-
-export interface Skill {
-    title: AvailableSkills,
-    description: string,
-    baseExpCap: number,
-    unlock: UnlockCondition[],
-    effect: number,
-}
-
-interface UnlockCondition {
-    skill: AvailableSkills,
-    level: number,
-}
+import type { Skill } from "./types";
 
 export const researchSkill: Skill = {
     title: 'Research',
@@ -19,7 +6,8 @@ export const researchSkill: Skill = {
     baseExpCap: 50,
     unlock: [],
     effect: 0.01,
-    // all skills
+    effectType: 'Skill Exp',
+    influencedBy: ['Research'],
 };
 
 export const educationSkill: Skill = {
@@ -28,7 +16,8 @@ export const educationSkill: Skill = {
     baseExpCap: 50,
     unlock: [],
     effect: 0.01,
-    // job exp
+    effectType: 'Job Exp',
+    influencedBy: ['Research'],
 };
 
 export const nutritionSkill: Skill = {
@@ -45,8 +34,9 @@ export const nutritionSkill: Skill = {
             level: 10,
         }
     ],
-    effect: 0.01,
-    // max lifespan multiplier
+    effect: 0.004,
+    effectType: 'Lifespan',
+    influencedBy: ['Research'],
 };
 
 export const negotiationSkill: Skill = {
@@ -64,7 +54,8 @@ export const negotiationSkill: Skill = {
         }
     ],
     effect: 0.01,
-    // job pay
+    effectType: 'Job Pay',
+    influencedBy: ['Research', 'Foreman'],
 };
 
 export const frugalitySkill: Skill = {
@@ -78,7 +69,8 @@ export const frugalitySkill: Skill = {
         },
     ],
     effect: -0.01,
-    // daily cost
+    effectType: 'Costs',
+    influencedBy: ['Research', 'Construction manager'],
 };
 
 export const strengthSkill: Skill = {
@@ -87,5 +79,6 @@ export const strengthSkill: Skill = {
     baseExpCap: 50,
     unlock: [],
     effect: 0.01,
-    // labour exp AND pay
+    effectType: 'Labour',
+    influencedBy: ['Research', 'Skilled worker']
 };

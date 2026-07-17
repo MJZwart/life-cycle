@@ -14,7 +14,8 @@
 
 <script setup lang="ts">
 import SkillBar from '../../components/SkillBar.vue'
-import { allSkills, getCurrentExpCap, setCurrentActive, type UserSkill } from '../../userSkills.ts';
+import type { UserSkill } from '../../constants/types';
+import { allSkills, getCurrentExpCap, setCurrentActive } from '../../userSkills.ts';
 
 const { skill } = defineProps<{ skill: UserSkill }>();
 

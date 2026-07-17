@@ -1,24 +1,4 @@
-import type { AvailableSkills } from "./skills";
-
-type AvailableLabourJobs = 'Labourer' | 'Skilled worker' | 'Foreman' | 'Construction manager';
-type AvailableJobTypes = 'Labour';
-
-type AvailableJobs = AvailableLabourJobs;
-
-export interface Job {
-    title: AvailableJobs,
-    type: AvailableJobTypes,
-    baseExpCap: number,
-    unlock: UnlockCondition[],
-    basePay: number,
-    payScale: number,
-    effect: number,
-}
-
-interface UnlockCondition {
-    job: AvailableJobs | AvailableSkills,
-    level: number,
-}
+import type { Job } from "./types";
 
 export const labourerJob: Job = {
     title: 'Labourer',
@@ -28,7 +8,8 @@ export const labourerJob: Job = {
     basePay: 5,
     payScale: 1.2,
     effect: 0,
-    // no effect
+    expInfluencedBy: ['Education', 'Strength training'],
+    payInfluencedBy: ['Negotiation', 'Strength training'],
 };
 
 export const skilledWorkerJob: Job = {
@@ -44,7 +25,9 @@ export const skilledWorkerJob: Job = {
     basePay: 10,
     payScale: 1.4,
     effect: 0.01,
-    // strength training exp
+    effectType: 'Strength training',
+    expInfluencedBy: ['Education', 'Strength training'],
+    payInfluencedBy: ['Negotiation', 'Strength training'],
 };
 
 export const foremanJob: Job = {
@@ -64,7 +47,9 @@ export const foremanJob: Job = {
     basePay: 25,
     payScale: 1.6,
     effect: 0.02,
-    // negotiation exp
+    effectType: 'Negotiation',
+    expInfluencedBy: ['Education', 'Strength training'],
+    payInfluencedBy: ['Negotiation', 'Strength training'],
 };
 
 export const constructionManagerJob: Job = {
@@ -83,5 +68,7 @@ export const constructionManagerJob: Job = {
     basePay: 50,
     payScale: 1.7,
     effect: 0.02,
-    // frugality exp
+    effectType: 'Frugality',
+    expInfluencedBy: ['Education', 'Strength training'],
+    payInfluencedBy: ['Negotiation', 'Strength training'],
 };

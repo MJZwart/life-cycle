@@ -1,16 +1,10 @@
 import { ref } from "vue";
-import { educationSkill, frugalitySkill, negotiationSkill, nutritionSkill, researchSkill, strengthSkill, type Skill } from "./constants/skills";
+import { educationSkill, frugalitySkill, negotiationSkill, nutritionSkill, researchSkill, strengthSkill } from "./constants/skills";
+import type { AvailableJobs, AvailableSkills, Skill, UserSkill } from "./constants/types";
 // When you level up, the new max xp should be
 // Math.round(skill.baseExp * (skill.level + 1) * Math.pow(1.01, skill.level))
 
 const baseExpPerTick = 5;
-
-export interface UserSkill {
-    skill: Skill,
-    currentExp: number,
-    level: number,
-    legacy: number,
-}
 
 export const research = ref<UserSkill>({
     skill: researchSkill,
@@ -49,26 +43,41 @@ export const strengthTraining = ref<UserSkill>({
     legacy: 0,
 });
 
-const currentlyActive = ref(research.value);
+const currentlyActiveSkill = ref(research.value);
 
 export const allSkills = ref<UserSkill[]>([research.value, education.value, nutrition.value, negotiation.value, frugality.value, strengthTraining.value]);
 
 export const setCurrentActive = (skill: UserSkill) => {
-    currentlyActive.value = skill;
+    currentlyActiveSkill.value = skill;
 }
 
-export const isCurrentlyActive = (skillName: string) => currentlyActive.value.skill.title === skillName;
+export const isCurrentlyActive = (skillName: string) => currentlyActiveSkill.value.skill.title === skillName;
 
 export const getCurrentExpCap = (level: number, baseExpCap: number) => {
     return Math.round(baseExpCap * (level + 1) * Math.pow(1.01, level));
 }
 
+const getExpBonusForSkill = (skill: Skill): number => {
+    let bonus = 1;
+    skill.influencedBy.forEach((influence) => {
+        const userSkill = allSkills.value.find((userSkill) => userSkill.skill.title === influence)
+        if (userSkill) {
+            bonus += (userSkill.level - 1) * userSkill.skill.effect;
+        }
+        // const userJob = allSkills.value.find((userSkill) => userSkill.skill.title === influence)
+        // if (userSkill) {
+        //     bonus += (userSkill.level - 1) * skill.effect;
+        // }
+    })
+    return bonus;
+}
+
 export const increaseCurrentSkill = () => {
-    currentlyActive.value.currentExp += baseExpPerTick;
-    const expCap = getCurrentExpCap(currentlyActive.value.level, currentlyActive.value.skill.baseExpCap);
-    if (currentlyActive.value.currentExp >= expCap) {
-        currentlyActive.value.level++;
-        currentlyActive.value.currentExp -= expCap;
+    currentlyActiveSkill.value.currentExp += Math.floor(baseExpPerTick * getExpBonusForSkill(currentlyActiveSkill.value.skill));
+    const expCap = getCurrentExpCap(currentlyActiveSkill.value.level, currentlyActiveSkill.value.skill.baseExpCap);
+    if (currentlyActiveSkill.value.currentExp >= expCap) {
+        currentlyActiveSkill.value.level++;
+        currentlyActiveSkill.value.currentExp -= expCap;
     }
 }
 
