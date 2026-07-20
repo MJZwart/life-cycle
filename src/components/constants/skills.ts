@@ -1,4 +1,4 @@
-import type { Skill } from "./types";
+import { availableJobs, availableSkills, type AvailableJobs, type AvailableSkills, type InfluenceType, type Skill } from './types';
 
 export const researchSkill: Skill = {
     title: 'Research',
@@ -82,3 +82,11 @@ export const strengthSkill: Skill = {
     effectType: 'Labour',
     influencedBy: ['Research', 'Skilled worker']
 };
+
+export const isSkill = (value: InfluenceType): value is AvailableSkills => {
+    return availableSkills.includes(value as AvailableSkills);
+}
+
+export const isJob = (value: InfluenceType): value is AvailableJobs => {
+    return availableJobs.includes(value as AvailableJobs);
+}

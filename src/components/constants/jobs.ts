@@ -40,7 +40,7 @@ export const foremanJob: Job = {
             level: 20,
         },
         {
-            job: 'Education',
+            skill: 'Education',
             level: 20,
         },
     ],
@@ -62,7 +62,7 @@ export const constructionManagerJob: Job = {
             level: 20,
         },
         {
-            job: 'Education',
+            skill: 'Education',
             level: 40,
         },],
     basePay: 50,

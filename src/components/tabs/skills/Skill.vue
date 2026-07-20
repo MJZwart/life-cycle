@@ -17,17 +17,19 @@ import SkillBar from '../../components/SkillBar.vue'
 import type { UserSkill } from '../../constants/types';
 import { allSkills, getCurrentExpCap, setCurrentActive } from '../../userSkills.ts';
 
+// TODO Turn into v-model
 const { skill } = defineProps<{ skill: UserSkill }>();
 
 const isSkillUnlocked = () => {
-    let unlocked = true;
-    skill.skill.unlock.forEach((unlock) => {
-        const requiredSkill = allSkills.value.find((userSkill) => userSkill.skill.title === unlock.skill);
-        if (!requiredSkill) return;
-        if (requiredSkill.level >= unlock.level) return;
-        unlocked = false;
+    if (skill.unlocked) return true;
+    const allConditionsMet = skill.skill.unlock.every((unlock) => {
+        if (unlock.skill) {
+            const requiredSkill = allSkills.value[unlock.skill];
+            return requiredSkill.level >= unlock.level;
+        }
     });
-    return unlocked
+    skill.unlocked = allConditionsMet;
+    return allConditionsMet;
 }
 
 const parseSkillUnlocks = () => {

@@ -1,7 +1,8 @@
 import { ref } from "vue";
 import { constructionManagerJob, foremanJob, labourerJob, skilledWorkerJob } from "./constants/jobs";
-import type { Job, UserJob } from "./constants/types";
+import type { AvailableJobs, Job, UserJob } from "./constants/types";
 import { allSkills } from "./userSkills";
+import { isSkill } from "./constants/skills";
 
 const baseExpPerTick = 5;
 
@@ -10,6 +11,7 @@ export const labourer = ref<UserJob>({
     currentExp: 0,
     level: 0,
     legacy: 0,
+    unlocked: true,
 });
 
 export const skilledWorker = ref<UserJob>({
@@ -17,6 +19,7 @@ export const skilledWorker = ref<UserJob>({
     currentExp: 0,
     level: 0,
     legacy: 0,
+    unlocked: false,
 });
 
 export const foreman = ref<UserJob>({
@@ -24,6 +27,7 @@ export const foreman = ref<UserJob>({
     currentExp: 0,
     level: 0,
     legacy: 0,
+    unlocked: false,
 });
 
 export const constructionManager = ref<UserJob>({
@@ -31,11 +35,17 @@ export const constructionManager = ref<UserJob>({
     currentExp: 0,
     level: 0,
     legacy: 0,
+    unlocked: false,
 });
 
 const currentlyActiveJob = ref(labourer.value);
 
-export const allJobs = ref<UserJob[]>([labourer.value, skilledWorker.value, foreman.value, constructionManager.value]);
+export const allJobs = ref<Record<AvailableJobs, UserJob>>({
+    'Labourer': labourer.value,
+    'Skilled worker': skilledWorker.value, 
+    'Foreman': foreman.value, 
+    'Construction manager': constructionManager.value
+});
 
 export const setCurrentActive = (job: UserJob) => {
     currentlyActiveJob.value = job;
@@ -52,9 +62,9 @@ const getExpBonusForJob = (job: Job): number => {
     let bonus = 1;
     // TODO Annoyingly this happens several times per second, and is likely not very efficient because of it
     job.expInfluencedBy.forEach((influence) => {
-        const userSkill = allSkills.value.find((userSkill) => userSkill.skill.title === influence)
-        if (userSkill) {
-            // TODO Check if this is correct
+        // TODO Check if this is correct, if it works as intended
+        if (isSkill(influence)) {
+            const userSkill = allSkills.value[influence]
             bonus += (userSkill.level - 1) * userSkill.skill.effect;
         }
         // const userJob = allSkills.value.find((userSkill) => userSkill.skill.title === influence)
