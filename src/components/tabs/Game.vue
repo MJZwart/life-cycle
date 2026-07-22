@@ -2,10 +2,22 @@
     <h3 flex justify-center text-gentle-light>Main game</h3>
     <div flex flex-col gap-2>
         <h4>Skills</h4>
+        <div flex>
+            <span min-w-30 ml-auto>Exp</span>
+            <span min-w-15>Level</span>
+            <span min-w-15>Boost</span>
+            <span min-w-15>Legacy</span>
+        </div>
         <span v-for="skill in allSkills" flex flex-row items-center>
             <Skill :skill />
         </span>
         <h4>Jobs</h4>
+        <div flex>
+            <span min-w-30 ml-auto>Exp</span>
+            <span min-w-15>Level</span>
+            <span min-w-15>Boost</span>
+            <span min-w-15>Legacy</span>
+        </div>
         <span v-for="job in allJobs" flex flex-row items-center>
             <Job :job />
         </span>

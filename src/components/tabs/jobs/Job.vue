@@ -2,10 +2,11 @@
     <template v-if="isJobUnlocked()">
         <JobBar :current-progress="job.currentExp" :max-progress="getCurrentExpCap(job.level, job.job.baseExpCap,)"
             :title="job.job.title" @click="setCurrentActive(job)" />
-        <span w-15>{{ job.currentExp }}</span> / <span w-15>{{ getCurrentExpCap(job.level,
+        <span min-w-15>{{ job.currentExp }}</span> / <span min-w-15>{{ getCurrentExpCap(job.level,
             job.job.baseExpCap,) }}</span>
         <span min-w-15 flex justify-center>{{ job.level }}</span>
         <span min-w-15 flex justify-center>{{ getExpBonusForJob(job.job) }}</span>
+        <span min-w-15 flex justify-center>{{ job.legacy }}</span>
     </template>
     <template v-else>
         {{ parseJobUnlocks() }}
@@ -20,10 +21,6 @@ import { allJobs, getCurrentExpCap, getExpBonusForJob, setCurrentActive, unlockJ
 import { allSkills } from '../../userSkills.ts';
 
 const { job } = defineProps<{ job: UserJob }>();
-
-// TODO 2) The job unlock for Skilled Worker checks every single tick after it has already been unlocked
-// Add a variable 'unlocked' to userSkill/userJob which is default false (except for base) and toggle them and then early return every tick
-// TODO 3) I think the Research skill still isn't adding bonus exp to skills
 
 const isJobUnlocked = () => {
     if (job.unlocked) return true;
