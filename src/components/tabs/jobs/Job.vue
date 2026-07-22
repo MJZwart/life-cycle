@@ -5,6 +5,7 @@
         <span w-15>{{ job.currentExp }}</span> / <span w-15>{{ getCurrentExpCap(job.level,
             job.job.baseExpCap,) }}</span>
         <span min-w-15 flex justify-center>{{ job.level }}</span>
+        <span min-w-15 flex justify-center>{{ getExpBonusForJob(job.job) }}</span>
     </template>
     <template v-else>
         {{ parseJobUnlocks() }}
@@ -12,12 +13,12 @@
 </template>
 
 <script setup lang="ts">
+// TODO Fix css trolling on Skilled Worker
 import JobBar from '../../components/JobBar.vue';
 import type { UserJob } from '../../constants/types';
-import { allJobs, getCurrentExpCap, setCurrentActive } from '../../userJobs.ts';
+import { allJobs, getCurrentExpCap, getExpBonusForJob, setCurrentActive, unlockJob } from '../../userJobs.ts';
 import { allSkills } from '../../userSkills.ts';
 
-// TODO Turn into v-model
 const { job } = defineProps<{ job: UserJob }>();
 
 // TODO 2) The job unlock for Skilled Worker checks every single tick after it has already been unlocked
@@ -35,7 +36,7 @@ const isJobUnlocked = () => {
             return requiredSkill.level >= unlock.level;
         }
     });
-    job.unlocked = allConditionsMet;
+    if (allConditionsMet) unlockJob(job.job.title);
     return allConditionsMet;
 }
 

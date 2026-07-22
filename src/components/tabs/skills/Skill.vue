@@ -6,6 +6,7 @@
         <span w-15>{{ skill.currentExp }}</span> / <span w-15>{{ getCurrentExpCap(skill.level,
             skill.skill.baseExpCap,) }}</span>
         <span min-w-15 flex justify-center>{{ skill.level }}</span>
+        <span min-w-15 flex justify-center>{{ getExpBonusForSkill(skill.skill) }}</span>
     </template>
     <template v-else>
         {{ parseSkillUnlocks() }}
@@ -15,9 +16,8 @@
 <script setup lang="ts">
 import SkillBar from '../../components/SkillBar.vue'
 import type { UserSkill } from '../../constants/types';
-import { allSkills, getCurrentExpCap, setCurrentActive } from '../../userSkills.ts';
+import { allSkills, getCurrentExpCap, getExpBonusForSkill, setCurrentActive, unlockSkill } from '../../userSkills.ts';
 
-// TODO Turn into v-model
 const { skill } = defineProps<{ skill: UserSkill }>();
 
 const isSkillUnlocked = () => {
@@ -28,7 +28,7 @@ const isSkillUnlocked = () => {
             return requiredSkill.level >= unlock.level;
         }
     });
-    skill.unlocked = allConditionsMet;
+    if (allConditionsMet) unlockSkill(skill.skill.title);
     return allConditionsMet;
 }
 

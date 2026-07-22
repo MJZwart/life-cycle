@@ -4,7 +4,7 @@ import type { AvailableJobs, Job, UserJob } from "./constants/types";
 import { allSkills } from "./userSkills";
 import { isSkill } from "./constants/skills";
 
-const baseExpPerTick = 5;
+const baseExpPerTick = 500;
 
 export const labourer = ref<UserJob>({
     job: labourerJob,
@@ -58,7 +58,7 @@ export const getCurrentExpCap = (level: number, baseExpCap: number) => {
     return Math.round(baseExpCap * (level + 1) * Math.pow(1.01, level));
 }
 
-const getExpBonusForJob = (job: Job): number => {
+export const getExpBonusForJob = (job: Job): number => {
     let bonus = 1;
     // TODO Annoyingly this happens several times per second, and is likely not very efficient because of it
     job.expInfluencedBy.forEach((influence) => {
@@ -72,7 +72,7 @@ const getExpBonusForJob = (job: Job): number => {
         //     bonus += (userSkill.level - 1) * skill.effect;
         // }
     })
-    return bonus;
+    return Math.floor(bonus * 1000) / 1000;
 }
 // TODO Add pay system
 
@@ -83,4 +83,8 @@ export const increaseCurrentJobExp = () => {
         currentlyActiveJob.value.level++;
         currentlyActiveJob.value.currentExp -= expCap;
     }
+}
+
+export const unlockJob = (jobTitle: AvailableJobs) => {
+    allJobs.value[jobTitle].unlocked = true;
 }

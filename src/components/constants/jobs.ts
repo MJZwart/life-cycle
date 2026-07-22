@@ -3,7 +3,7 @@ import type { Job } from "./types";
 export const labourerJob: Job = {
     title: 'Labourer',
     type: 'Labour',
-    baseExpCap: 100,
+    baseExpCap: 1000,
     unlock: [],
     basePay: 5,
     payScale: 1.2,
@@ -15,7 +15,7 @@ export const labourerJob: Job = {
 export const skilledWorkerJob: Job = {
     title: 'Skilled worker',
     type: 'Labour',
-    baseExpCap: 150,
+    baseExpCap: 1500,
     unlock: [
         {
             job: 'Labourer',
@@ -33,7 +33,7 @@ export const skilledWorkerJob: Job = {
 export const foremanJob: Job = {
     title: 'Foreman',
     type: 'Labour',
-    baseExpCap: 200,
+    baseExpCap: 2000,
     unlock: [
         {
             job: 'Skilled worker',
@@ -55,7 +55,7 @@ export const foremanJob: Job = {
 export const constructionManagerJob: Job = {
     title: 'Labourer',
     type: 'Labour',
-    baseExpCap: 250,
+    baseExpCap: 2500,
     unlock: [
         {
             job: 'Foreman',

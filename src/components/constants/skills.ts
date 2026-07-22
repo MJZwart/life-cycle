@@ -3,7 +3,7 @@ import { availableJobs, availableSkills, type AvailableJobs, type AvailableSkill
 export const researchSkill: Skill = {
     title: 'Research',
     description: 'Improve skill learning',
-    baseExpCap: 50,
+    baseExpCap: 500,
     unlock: [],
     effect: 0.01,
     effectType: 'Skill Exp',
@@ -13,7 +13,7 @@ export const researchSkill: Skill = {
 export const educationSkill: Skill = {
     title: 'Education',
     description: 'Faster job growth and unlock better jobs',
-    baseExpCap: 50,
+    baseExpCap: 500,
     unlock: [],
     effect: 0.01,
     effectType: 'Job Exp',
@@ -23,7 +23,7 @@ export const educationSkill: Skill = {
 export const nutritionSkill: Skill = {
     title: 'Nutrition',
     description: 'Longer lifespan',
-    baseExpCap: 50,
+    baseExpCap: 500,
     unlock: [
         {
             skill: 'Research',
@@ -42,7 +42,7 @@ export const nutritionSkill: Skill = {
 export const negotiationSkill: Skill = {
     title: 'Negotiation',
     description: 'Higher work pay',
-    baseExpCap: 50,
+    baseExpCap: 500,
     unlock: [
         {
             skill: 'Research',
@@ -61,7 +61,7 @@ export const negotiationSkill: Skill = {
 export const frugalitySkill: Skill = {
     title: 'Frugality',
     description: 'Lower daily cost',
-    baseExpCap: 50,
+    baseExpCap: 500,
     unlock: [
         {
             skill: 'Research',
@@ -76,7 +76,7 @@ export const frugalitySkill: Skill = {
 export const strengthSkill: Skill = {
     title: 'Strength training',
     description: 'Boost to labour job exp and pay',
-    baseExpCap: 50,
+    baseExpCap: 500,
     unlock: [],
     effect: 0.01,
     effectType: 'Labour',

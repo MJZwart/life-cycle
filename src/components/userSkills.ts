@@ -4,7 +4,7 @@ import type { AvailableSkills, Skill, UserSkill } from "./constants/types";
 // When you level up, the new max xp should be
 // Math.round(skill.baseExp * (skill.level + 1) * Math.pow(1.01, skill.level))
 
-const baseExpPerTick = 5;
+const baseExpPerTick = 500;
 
 export const research = ref<UserSkill>({
     skill: researchSkill,
@@ -72,7 +72,7 @@ export const getCurrentExpCap = (level: number, baseExpCap: number) => {
     return Math.round(baseExpCap * (level + 1) * Math.pow(1.01, level));
 }
 
-const getExpBonusForSkill = (skill: Skill): number => {
+export const getExpBonusForSkill = (skill: Skill): number => {
     let bonus = 1;
     skill.influencedBy.forEach((influence) => {
         if (isSkill(influence)) {
@@ -86,7 +86,7 @@ const getExpBonusForSkill = (skill: Skill): number => {
         //     bonus += (userSkill.level - 1) * skill.effect;
         // }
     })
-    return bonus;
+    return Math.floor(bonus * 1000) / 1000;
 }
 
 export const increaseCurrentSkill = () => {
@@ -98,6 +98,13 @@ export const increaseCurrentSkill = () => {
     }
 }
 
+export const unlockSkill = (skillTitle: AvailableSkills) => {
+    allSkills.value[skillTitle].unlocked = true;
+}
+
+/**
+ * Saving
+ */
 interface SavedSkills {
     research: UserSkill;
     education: UserSkill;
