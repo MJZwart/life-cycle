@@ -1,8 +1,9 @@
 <template>
     <template v-if="isSkillUnlocked()">
-        <SkillBar :current-progress="skill.currentExp"
+        <ProgressBar :current-progress="skill.currentExp"
             :max-progress="getCurrentExpCap(skill.level, skill.skill.baseExpCap,)" :title="skill.skill.title"
-            @click="setCurrentActive(skill)" />
+            @click="setCurrentActive(skill)" :active="isCurrentlyActive(skill.skill.title)"
+            :description="skill.skill.description" />
         <span min-w-15>{{ skill.currentExp }}</span> / <span min-w-15>{{ getCurrentExpCap(skill.level,
             skill.skill.baseExpCap,) }}</span>
         <span min-w-15 flex justify-center>{{ skill.level }}</span>
@@ -15,9 +16,9 @@
 </template>
 
 <script setup lang="ts">
-import SkillBar from '../../components/SkillBar.vue'
+import ProgressBar from '../../components/ProgressBar.vue';
 import type { UserSkill } from '../../constants/types';
-import { allSkills, getCurrentExpCap, getExpBonusForSkill, setCurrentActive, unlockSkill } from '../../userSkills.ts';
+import { allSkills, getCurrentExpCap, getExpBonusForSkill, isCurrentlyActive, setCurrentActive, unlockSkill } from '../../userSkills.ts';
 
 const { skill } = defineProps<{ skill: UserSkill }>();
 

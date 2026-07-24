@@ -9,84 +9,88 @@ import LogItem from './components/LogItem.vue';
 
 const log = [
     {
-        text: 'You gained {r}.',
-        variable: '2 armour',
+        text: 'You unlocked {r}.',
+        variable: 'Skilled worker',
     },
     {
-        text: 'You found {r}.',
-        variable: 'a giant squid',
+        text: 'You unlocked {r}.',
+        variable: 'Foreman',
     },
     {
-        text: 'Ho there wanderer, stay thy course for a moment, to indulge {r}.',
-        variable: 'an old man',
+        text: 'A mysterious {r} appears on your doorstep.',
+        variable: 'amulet',
     },
-    {
-        text: 'Fourteen {r} started attacking you.',
-        variable: 'yellow doves',
-    },
-    {
-        text: 'I\'m an {r}.',
-        variable: 'immigrant child',
-    },
-    {
-        text: 'Who the hell is {r}?',
-        variable: 'Edgar',
-    },
-    {
-        text: 'Say my {r} right.',
-        variable: 'name',
-    },
-    {
-        text: 'Fourteen {r} started attacking you.',
-        variable: 'yellow doves',
-    },
-    {
-        text: 'You gained {r}.',
-        variable: '2 armour',
-    },
-    {
-        text: 'You found {r}.',
-        variable: 'a giant squid',
-    },
-    {
-        text: 'Ho there wanderer, stay thy course for a moment, to indulge {r}.',
-        variable: 'an old man',
-    },
-    {
-        text: 'Fourteen {r} started attacking you.',
-        variable: 'yellow doves',
-    },
-    {
-        text: 'You gained {r}.',
-        variable: '2 armour',
-    },
-    {
-        text: 'You found {r}.',
-        variable: 'a giant squid',
-    },
-    {
-        text: 'Ho there wanderer, stay thy course for a moment, to indulge {r}.',
-        variable: 'an old man',
-    },
-    {
-        text: 'Fourteen {r} started attacking you.',
-        variable: 'yellow doves',
-    },
-    {
-        text: 'You gained {r}.',
-        variable: '2 armour',
-    },
-    {
-        text: 'You found {r}.',
-        variable: 'a giant squid',
-    },
-    {
-        text: 'Ho there wanderer, stay thy course for a moment, to indulge {r}.',
-        variable: 'an old man',
-    },
-    {
-        text: 'Fourteen {r} started attacking you.',
-        variable: 'yellow doves',
-    },
+    // {
+    //     text: 'Ho there wanderer, stay thy course for a moment, to indulge {r}.',
+    //     variable: 'an old man',
+    // },
+    // {
+    //     text: 'Fourteen {r} started attacking you.',
+    //     variable: 'yellow doves',
+    // },
+    // {
+    //     text: 'I\'m an {r}.',
+    //     variable: 'immigrant child',
+    // },
+    // {
+    //     text: 'Who the hell is {r}?',
+    //     variable: 'Edgar',
+    // },
+    // {
+    //     text: 'Say my {r} right.',
+    //     variable: 'name',
+    // },
+    // {
+    //     text: 'Fourteen {r} started attacking you.',
+    //     variable: 'yellow doves',
+    // },
+    // {
+    //     text: 'You gained {r}.',
+    //     variable: '2 armour',
+    // },
+    // {
+    //     text: 'You found {r}.',
+    //     variable: 'a giant squid',
+    // },
+    // {
+    //     text: 'Ho there wanderer, stay thy course for a moment, to indulge {r}.',
+    //     variable: 'an old man',
+    // },
+    // {
+    //     text: 'Fourteen {r} started attacking you.',
+    //     variable: 'yellow doves',
+    // },
+    // {
+    //     text: 'You gained {r}.',
+    //     variable: '2 armour',
+    // },
+    // {
+    //     text: 'You found {r}.',
+    //     variable: 'a giant squid',
+    // },
+    // {
+    //     text: 'Ho there wanderer, stay thy course for a moment, to indulge {r}.',
+    //     variable: 'an old man',
+    // },
+    // {
+    //     text: 'Fourteen {r} started attacking you.',
+    //     variable: 'yellow doves',
+    // },
+    // {
+    //     text: 'You gained {r}.',
+    //     variable: '2 armour',
+    // },
+    // {
+    //     text: 'You found {r}.',
+    //     variable: 'a giant squid',
+    // },
+    // {
+    //     text: 'Ho there wanderer, stay thy course for a moment, to indulge {r}.',
+    //     variable: 'an old man',
+    // },
+    // {
+    //     text: 'Fourteen {r} started attacking you.',
+    //     variable: 'yellow doves',
+    // },
 ];
 </script>

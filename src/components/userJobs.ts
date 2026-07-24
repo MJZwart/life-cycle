@@ -3,6 +3,7 @@ import { constructionManagerJob, foremanJob, labourerJob, skilledWorkerJob } fro
 import type { AvailableJobs, Job, UserJob } from "./constants/types";
 import { allSkills } from "./userSkills";
 import { isSkill } from "./constants/skills";
+import { getCurrentExpCap } from "./helpers/maths";
 
 const baseExpPerTick = 500;
 
@@ -52,11 +53,6 @@ export const setCurrentActive = (job: UserJob) => {
 }
 
 export const isCurrentlyActive = (jobName: string) => currentlyActiveJob.value.job.title === jobName;
-
-// TODO is shared, try to put it elsewhere
-export const getCurrentExpCap = (level: number, baseExpCap: number) => {
-    return Math.round(baseExpCap * (level + 1) * Math.pow(1.01, level));
-}
 
 export const getExpBonusForJob = (job: Job): number => {
     let bonus = 1;

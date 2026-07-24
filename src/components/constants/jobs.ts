@@ -3,6 +3,7 @@ import type { Job } from "./types";
 export const labourerJob: Job = {
     title: 'Labourer',
     type: 'Labour',
+    description: 'Honest work',
     baseExpCap: 1000,
     unlock: [],
     basePay: 5,
@@ -15,6 +16,7 @@ export const labourerJob: Job = {
 export const skilledWorkerJob: Job = {
     title: 'Skilled worker',
     type: 'Labour',
+    description: 'Boosts strength training',
     baseExpCap: 1500,
     unlock: [
         {
@@ -33,6 +35,7 @@ export const skilledWorkerJob: Job = {
 export const foremanJob: Job = {
     title: 'Foreman',
     type: 'Labour',
+    description: 'Boosts negotiation skill',
     baseExpCap: 2000,
     unlock: [
         {
@@ -55,6 +58,7 @@ export const foremanJob: Job = {
 export const constructionManagerJob: Job = {
     title: 'Labourer',
     type: 'Labour',
+    description: 'Boosts frugality skill',
     baseExpCap: 2500,
     unlock: [
         {

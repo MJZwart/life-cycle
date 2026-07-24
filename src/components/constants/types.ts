@@ -28,6 +28,7 @@ export type InfluenceType = typeof influenceType[number];
 export interface Job {
     title: AvailableJobs,
     type: AvailableJobTypes,
+    description: string,
     baseExpCap: number,
     unlock: UnlockCondition[],
     basePay: number,

@@ -1,7 +1,8 @@
 <template>
     <template v-if="isJobUnlocked()">
-        <JobBar :current-progress="job.currentExp" :max-progress="getCurrentExpCap(job.level, job.job.baseExpCap,)"
-            :title="job.job.title" @click="setCurrentActive(job)" />
+        <ProgressBar :current-progress="job.currentExp" :max-progress="getCurrentExpCap(job.level, job.job.baseExpCap,)"
+            :title="job.job.title" :description="job.job.description" :active="isCurrentlyActive(job.job.title)"
+            @click="setCurrentActive(job)" />
         <span min-w-15>{{ job.currentExp }}</span> / <span min-w-15>{{ getCurrentExpCap(job.level,
             job.job.baseExpCap,) }}</span>
         <span min-w-15 flex justify-center>{{ job.level }}</span>
@@ -14,10 +15,10 @@
 </template>
 
 <script setup lang="ts">
-// TODO Fix css trolling on Skilled Worker
-import JobBar from '../../components/JobBar.vue';
+import ProgressBar from '../../components/ProgressBar.vue';
 import type { UserJob } from '../../constants/types';
-import { allJobs, getCurrentExpCap, getExpBonusForJob, setCurrentActive, unlockJob } from '../../userJobs.ts';
+import { getCurrentExpCap } from '../../helpers/maths.ts';
+import { allJobs, getExpBonusForJob, isCurrentlyActive, setCurrentActive, unlockJob } from '../../userJobs.ts';
 import { allSkills } from '../../userSkills.ts';
 
 const { job } = defineProps<{ job: UserJob }>();

@@ -2,7 +2,7 @@
     <h3 flex justify-center text-gentle-light>Main game</h3>
     <div flex flex-col gap-2>
         <h4>Skills</h4>
-        <div flex>
+        <div flex font-600>
             <span min-w-30 ml-auto>Exp</span>
             <span min-w-15>Level</span>
             <span min-w-15>Boost</span>
@@ -12,7 +12,7 @@
             <Skill :skill />
         </span>
         <h4>Jobs</h4>
-        <div flex>
+        <div flex font-600>
             <span min-w-30 ml-auto>Exp</span>
             <span min-w-15>Level</span>
             <span min-w-15>Boost</span>
