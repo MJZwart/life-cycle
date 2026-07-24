@@ -1,6 +1,7 @@
 import { ref } from "vue";
 import { educationSkill, frugalitySkill, isJob, isSkill, negotiationSkill, nutritionSkill, researchSkill, strengthSkill } from "./constants/skills";
 import type { AvailableSkills, Skill, UserSkill } from "./constants/types";
+import { allJobs } from "./userJobs";
 // When you level up, the new max xp should be
 // Math.round(skill.baseExp * (skill.level + 1) * Math.pow(1.01, skill.level))
 
@@ -77,14 +78,11 @@ export const getExpBonusForSkill = (skill: Skill): number => {
     skill.influencedBy.forEach((influence) => {
         if (isSkill(influence)) {
             const userSkill = allSkills.value[influence]
-            bonus += (userSkill.level - 1) * userSkill.skill.effect;
+            bonus += (userSkill.level) * userSkill.skill.effect;
         } else if (isJob(influence)){
-            // const userJob = allJobs.value[]
+            const userJob = allJobs.value[influence]
+            bonus += (userJob.level) * userJob.job.effect;
         }
-        // const userJob = allSkills.value.find((userSkill) => userSkill.skill.title === influence)
-        // if (userSkill) {
-        //     bonus += (userSkill.level - 1) * skill.effect;
-        // }
     })
     return Math.floor(bonus * 1000) / 1000;
 }

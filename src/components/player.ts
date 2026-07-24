@@ -3,11 +3,13 @@ import { nutrition } from "./userSkills";
 
 export interface Player {
     age: number,
+    money: number,
 }
 
 const createNewPlayer = (): Player => {
     return {
         age: 16 * 365,
+        money: 0,
     }
 }
 

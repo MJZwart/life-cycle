@@ -1,9 +1,10 @@
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import { constructionManagerJob, foremanJob, labourerJob, skilledWorkerJob } from "./constants/jobs";
-import type { AvailableJobs, Job, UserJob } from "./constants/types";
-import { allSkills } from "./userSkills";
-import { isSkill } from "./constants/skills";
+import type { AvailableJobs, AvailableJobTypes, Job, UserJob } from "./constants/types";
+import { allSkills, negotiation, strengthTraining } from "./userSkills";
+import { isSkill, negotiationSkill, strengthSkill } from "./constants/skills";
 import { getCurrentExpCap } from "./helpers/maths";
+import { player } from "./player";
 
 const baseExpPerTick = 500;
 
@@ -56,9 +57,7 @@ export const isCurrentlyActive = (jobName: string) => currentlyActiveJob.value.j
 
 export const getExpBonusForJob = (job: Job): number => {
     let bonus = 1;
-    // TODO Annoyingly this happens several times per second, and is likely not very efficient because of it
     job.expInfluencedBy.forEach((influence) => {
-        // TODO Check if this is correct, if it works as intended
         if (isSkill(influence)) {
             const userSkill = allSkills.value[influence]
             bonus += (userSkill.level - 1) * userSkill.skill.effect;
@@ -70,7 +69,29 @@ export const getExpBonusForJob = (job: Job): number => {
     })
     return Math.floor(bonus * 1000) / 1000;
 }
-// TODO Add pay system
+// TODO LATER add happiness system, boosting everything.
+// TODO LATER Add items to buy to boost happiness, all on Nav 1 or something.
+
+export const getPay = (jobBasePay: number, jobLevel: number, jobType: AvailableJobTypes) => {
+    const basePay = jobBasePay * (jobLevel + 1);
+    // TODO Currently has hardcoded negotiation bonus and added hardcoded labour type bonus, find a way to make it dynamic
+    const negotiationBonus = negotiation.value.level * negotiationSkill.effect;
+    let jobTypeBonus = 0;
+    switch (jobType) {
+        case 'Labour':
+            jobTypeBonus += strengthTraining.value.level * strengthSkill.effect;
+            break;
+    }
+    return Math.round(basePay * ((negotiationBonus + jobTypeBonus) + 1));
+};
+
+export const getCurrentPay = computed(() => {
+    return getPay(currentlyActiveJob.value.job.basePay, currentlyActiveJob.value.level, currentlyActiveJob.value.job.type);
+});
+
+export const increaseCurrentJobPay = () => {
+    player.value.money += getCurrentPay.value;
+}
 
 export const increaseCurrentJobExp = () => {
     currentlyActiveJob.value.currentExp += Math.floor(baseExpPerTick * getExpBonusForJob(currentlyActiveJob.value.job));

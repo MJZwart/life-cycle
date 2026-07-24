@@ -3,6 +3,7 @@
         <ProgressBar :current-progress="job.currentExp" :max-progress="getCurrentExpCap(job.level, job.job.baseExpCap,)"
             :title="job.job.title" :description="job.job.description" :active="isCurrentlyActive(job.job.title)"
             @click="setCurrentActive(job)" />
+        <span min-w-15>{{ getPay(job.job.basePay, job.level, job.job.type) }}</span>
         <span min-w-15>{{ job.currentExp }}</span> / <span min-w-15>{{ getCurrentExpCap(job.level,
             job.job.baseExpCap,) }}</span>
         <span min-w-15 flex justify-center>{{ job.level }}</span>
@@ -18,7 +19,7 @@
 import ProgressBar from '../../components/ProgressBar.vue';
 import type { UserJob } from '../../constants/types';
 import { getCurrentExpCap } from '../../helpers/maths.ts';
-import { allJobs, getExpBonusForJob, isCurrentlyActive, setCurrentActive, unlockJob } from '../../userJobs.ts';
+import { allJobs, getExpBonusForJob, getPay, isCurrentlyActive, setCurrentActive, unlockJob } from '../../userJobs.ts';
 import { allSkills } from '../../userSkills.ts';
 
 const { job } = defineProps<{ job: UserJob }>();

@@ -4,7 +4,7 @@
             transition-width transition-duration-200 :class="{ 'bg-opacity-40': active }" h-9 absolute>
         </div>
         <div absolute p-2>
-            {{ title }} <span text-xs>{{ description }}</span>
+            <span>{{ title }}</span><span text-xs hidden lg:inline> - {{ description }}</span>
         </div>
     </div>
 </template>
