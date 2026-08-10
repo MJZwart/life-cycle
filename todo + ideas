@@ -1,5 +1,12 @@
 [ ] Make the skill bar smoother so it hits a new level as soon as it is full
-
+[ ] Add happiness system
+[ ] Add items to buy which boosts happiness (Nav 1)
+[ ] Add daily costs to these items and have it change money. Change income to net number (or show all numbers)
+[ ] When money hits 0, go back to an option without costs
+[ ] Add prestige/legacy system
+[ ] Rename nav tabs
+[ ] Use the logs at the side of the screen for anything, or get rid of it for now
+[ ] Add more jobs/skills (in waves)
 
 Current skills:
 
