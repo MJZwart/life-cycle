@@ -56,7 +56,7 @@ export const foremanJob: Job = {
 };
 
 export const constructionManagerJob: Job = {
-    title: 'Labourer',
+    title: 'Construction manager',
     type: 'Labour',
     description: 'Boosts frugality skill',
     baseExpCap: 2500,
