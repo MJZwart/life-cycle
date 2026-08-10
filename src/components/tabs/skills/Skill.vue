@@ -4,10 +4,11 @@
             :max-progress="getCurrentExpCap(skill.level, skill.skill.baseExpCap,)" :title="skill.skill.title"
             @click="setCurrentActive(skill)" :active="isCurrentlyActive(skill.skill.title)"
             :description="skill.skill.description" />
-        <span min-w-15>{{ skill.currentExp }}</span> / <span min-w-15>{{ getCurrentExpCap(skill.level,
-            skill.skill.baseExpCap,) }}</span>
+        <span min-w-15>{{ parseThousands(skill.currentExp) }}</span> / <span min-w-15>{{
+            parseThousands(getCurrentExpCap(skill.level,
+                skill.skill.baseExpCap)) }}</span>
         <span min-w-15 flex justify-center>{{ skill.level }}</span>
-        <span min-w-15 flex justify-center>{{ getExpBonusForSkill(skill.skill) }}</span>
+        <span min-w-15 flex justify-center>{{ (getExpBonusForSkill(skill.skill)) }}</span>
         <span min-w-15 flex justify-center>{{ skill.legacy }}</span>
     </template>
     <template v-else>
@@ -18,6 +19,7 @@
 <script setup lang="ts">
 import ProgressBar from '../../components/ProgressBar.vue';
 import type { UserSkill } from '../../constants/types';
+import { parseThousands } from '../../helpers/numberParser.ts';
 import { allSkills, getCurrentExpCap, getExpBonusForSkill, isCurrentlyActive, setCurrentActive, unlockSkill } from '../../userSkills.ts';
 
 const { skill } = defineProps<{ skill: UserSkill }>();
