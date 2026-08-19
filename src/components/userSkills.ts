@@ -100,6 +100,10 @@ export const unlockSkill = (skillTitle: AvailableSkills) => {
     allSkills.value[skillTitle].unlocked = true;
 }
 
+export const getCurrentEffectFromSkill = (skill: UserSkill) => {
+    return (skill.level - 1) * skill.skill.effect;
+}
+
 /**
  * Saving
  */

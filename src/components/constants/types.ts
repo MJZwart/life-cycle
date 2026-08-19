@@ -70,3 +70,20 @@ export interface UserJob {
     legacy: number,
     unlocked: boolean,
 }
+
+export interface Home {
+    name: string,
+    happiness: number,
+    cost: number,
+    unlock: number, // The total wealth needed to unlock this
+}
+
+type ItemBoosts = 'Happiness' | AvailableJobs | AvailableSkills;
+export interface Item {
+    name: string,
+    boost: ItemBoosts,
+    boostEffect: number,
+    cost: number,
+    unlockType: AvailableSkills | AvailableJobs,
+    unlockLevel: number,
+}

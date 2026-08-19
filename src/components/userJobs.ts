@@ -105,3 +105,7 @@ export const increaseCurrentJobExp = () => {
 export const unlockJob = (jobTitle: AvailableJobs) => {
     allJobs.value[jobTitle].unlocked = true;
 }
+
+export const getCurrentEffectFromJob = (job: UserJob) => {
+    return (job.level - 1) * job.job.effect;
+}
